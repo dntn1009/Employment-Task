@@ -2,35 +2,53 @@
 
 📁 구현 파일 구조 및 역할 설명
 
-Assets/Project/Scenes
-├── StageDataTestScene # StageEditor 테스트 및 미리보기용 씬 구성
+Assets/Project/Scenes  
+├── StageDataTestScene.cs  
+│   └─ StageEditor 테스트 및 미리보기용 씬 구성
 
-Assets/Project/Scripts/Controller
-├── BoardController.cs         # 전체 스테이지 흐름 및 로직 컨트롤러
-├── BoardController+StageData.cs # StageData 로딩/초기화 전용 분리 스크립트
-├── BlockDestroyHelper.cs      # 블록 파괴 트리거 및 이벤트 도우미
+Assets/Project/Scripts/Controller  
+├── BoardController.cs  
+│   └─ 전체 스테이지 흐름 및 로직 컨트롤러  
+├── BoardController+StageData.cs  
+│   └─ StageData 로딩/초기화 전용 분리 스크립트  
+├── BlockDestroyHelper.cs  
+│   └─ 블록 파괴 트리거 및 이벤트 도우미
 
-Assets/Project/Scripts/Controller/MVC
-├── BlockFactory.cs            # BoardBlock 생성 및 Addressable 로딩 처리
-├── WallFactory.cs             # WallData 기반 Wall 객체 생성
-├── PlayingBlockSpawner.cs     # StageData 기반 플레이블록 생성
-├── BoardMaskRenderer.cs       # 외곽 마스킹 Quad 처리 (Stencil 전환 시도 포함)
-├── ParticleEffectController.cs # 블록 파괴 이펙트 및 이펙트 풀링 처리
+Assets/Project/Scripts/Controller/MVC  
+├── BlockFactory.cs  
+│   └─ BoardBlock 생성 및 Addressable 로딩 처리  
+├── WallFactory.cs  
+│   └─ WallData 기반 Wall 객체 생성  
+├── PlayingBlockSpawner.cs  
+│   └─ StageData 기반 플레이블록 생성  
+├── BoardMaskRenderer.cs  
+│   └─ 외곽 마스킹 Quad 처리 (Stencil 전환 시도 포함)  
+├── ParticleEffectController.cs  
+│   └─ 블록 파괴 이펙트 및 이펙트 풀링 처리
 
-Assets/Project/Scripts/Handler
-├── BlockDragHandler.cs        # Drag&Drop 입력 처리 및 이벤트 분배 핵심 핸들러
+Assets/Project/Scripts/Handler  
+├── BlockDragHandler.cs  
+│   └─ Drag&Drop 입력 처리 및 이벤트 분배 핵심 핸들러
 
-Assets/Project/Scripts/Handler/MVC
-├── BlockMouseInput.cs         # 실제 마우스 입력 감지 처리
-├── BlockCollisionState.cs     # 블록의 충돌 상태 유지 및 이벤트 분리
-├── BlockMovementController.cs # 블록 이동 상태 제어 및 물리 반응 처리
-├── BlockOutlineController.cs  # 선택된 블록의 외곽선 연출 및 피드백 처리
+Assets/Project/Scripts/Handler/MVC  
+├── BlockMouseInput.cs  
+│   └─ 실제 마우스 입력 감지 처리  
+├── BlockCollisionState.cs  
+│   └─ 블록의 충돌 상태 유지 및 이벤트 분리  
+├── BlockMovementController.cs  
+│   └─ 블록 이동 상태 제어 및 물리 반응 처리  
+├── BlockOutlineController.cs  
+│   └─ 선택된 블록의 외곽선 연출 및 피드백 처리
 
-Assets/Project/Scripts/Util
-├── StagePreviewBridge.cs      # 에디터에서 만든 StageData를 플레이모드로 전달하는 브릿지 클래스 (DontDestroyOnLoad 활용)
+Assets/Project/Scripts/Util  
+├── StagePreviewBridge.cs  
+│   └─ 에디터에서 만든 StageData를 플레이 모드로 전달하는 브릿지 클래스  
+│      (DontDestroyOnLoad 활용)
 
-Assets/Editor
-├── StageDataEditor.cs         # ScriptableObject 기반 StageData 생성 및 편집 기능 제공 (직관적인 블록/벽 UI 설정 지원)
+Assets/Editor  
+├── StageDataEditor.cs  
+│   └─ ScriptableObject 기반 StageData 생성 및 편집 기능 제공  
+│      (직관적인 블록/벽 UI 설정 지원)
 
 🧩 구현 내용 요약
 
