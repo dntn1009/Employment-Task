@@ -74,6 +74,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizon: 1
   vertical: 1
+  uniqueIndex: 0
+  gimmickType: 
   blocks: []
   blockOffsets: []
   Enabled: 1

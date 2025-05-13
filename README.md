@@ -1,117 +1,98 @@
-# 🎮 ActionFit Code Test - Unity Client Developer
+🎮 ActionFit Code Test - Unity Client Developer
 
----
+📁 구현 파일 구조 및 역할 설명
 
-## ✅ 목표
+Assets/Project/Scenes
+├── StageDataTestScene # StageEditor 테스트 및 미리보기용 씬 구성
 
-- **제출 일시**: 2025년 5월 14일 13:00까지  
-- **제출 방식**: GitHub Fork 후 개인 저장소의 URL을 아래 Google Form에 제출  
-  - 제출 Form URL: [https://forms.gle/6hR7mD59G7o1U2ZCA](https://forms.gle/6hR7mD59G7o1U2ZCA)  
-  - 반드시 **Public 권한**으로 설정해주세요.
+Assets/Project/Scripts/Controller
+├── BoardController.cs         # 전체 스테이지 흐름 및 로직 컨트롤러
+├── BoardController+StageData.cs # StageData 로딩/초기화 전용 분리 스크립트
+├── BlockDestroyHelper.cs      # 블록 파괴 트리거 및 이벤트 도우미
 
-### 🎯 과제 목적
+Assets/Project/Scripts/Controller/MVC
+├── BlockFactory.cs            # BoardBlock 생성 및 Addressable 로딩 처리
+├── WallFactory.cs             # WallData 기반 Wall 객체 생성
+├── PlayingBlockSpawner.cs     # StageData 기반 플레이블록 생성
+├── BoardMaskRenderer.cs       # 외곽 마스킹 Quad 처리 (Stencil 전환 시도 포함)
+├── ParticleEffectController.cs # 블록 파괴 이펙트 및 이펙트 풀링 처리
 
-캐주얼 퍼즐 게임 클라이언트 개발자의 전반적인 기술 역량을 평가합니다:
+Assets/Project/Scripts/Handler
+├── BlockDragHandler.cs        # Drag&Drop 입력 처리 및 이벤트 분배 핵심 핸들러
 
-- 설계 및 구조화 능력
-- 커스텀 에디터 제작 능력
-- 물리 및 셰이더에 대한 이해
-- 프로토타입 프로젝트의 리팩토링 능력
+Assets/Project/Scripts/Handler/MVC
+├── BlockMouseInput.cs         # 실제 마우스 입력 감지 처리
+├── BlockCollisionState.cs     # 블록의 충돌 상태 유지 및 이벤트 분리
+├── BlockMovementController.cs # 블록 이동 상태 제어 및 물리 반응 처리
+├── BlockOutlineController.cs  # 선택된 블록의 외곽선 연출 및 피드백 처리
 
-### 📝평가 기준
-- 코드 구조 및 설계 (40%) 
-- 에디터 기능성 및 사용성 (40%) 
-- 셰이더 구현 및 시각 효과 (15%) 
-- 코드 스타일 및 문서화 (5%)
+Assets/Project/Scripts/Util
+├── StagePreviewBridge.cs      # 에디터에서 만든 StageData를 플레이모드로 전달하는 브릿지 클래스 (DontDestroyOnLoad 활용)
 
----
+Assets/Editor
+├── StageDataEditor.cs         # ScriptableObject 기반 StageData 생성 및 편집 기능 제공 (직관적인 블록/벽 UI 설정 지원)
 
-## 🔧 개발 환경
+🧩 구현 내용 요약
 
-- **Unity 버전**: Unity 6 (6000.0.40f1 이상)
-- **지원 플랫폼**: Android / iOS
-- **실행 방법**:  
-  `Assets/Project/Scenes/GameScene` 실행 → Drag & Drop 조작으로 진행
+01. 🛠️ 코드 리팩토링
 
----
+✅ 주요 개선 사항
 
-## 📁 제공 기능 요약
+MVC 패턴 기반 구조화
 
-- `async/await` 기반 Level Board Generator
-- 3D Physics + Joint 기반 블록 물리 처리
-- Drag & Drop 블록 배치 기능
-- DOTween을 활용한 연출
-- 버텍스 셰이더 기반 Outline 처리
-- 블록 파괴 연출 (`Quad` 기반 시각 트릭 사용 중)
+BoardController의 기능을 세분화: Factory, Spawner 등으로 역할 분리
 
----
+입력 / 상태 / 렌더링 역할 분리
 
-## 01. 🛠️ Code Refactoring
+BlockDragHandler 분리
 
-### 🔍 대상 파일/폴더
+드래그 처리와 물리 로직을 별도 분리하여 SRP 원칙 적용
 
-- `Scripts` 폴더 내 전체 스크립트
-- `Editor/BoardSOCreator.cs`
-- `Project` 내 리소스 폴더 및 관련 데이터  
-  (`Data`, `Materials`, `Model`, `Prefabs`, `Scenes/GameScene`, 등)
+02. 🧩 Stage Editor 구현
 
-### 📌 요구 사항
+✅ 구현 방식
 
-- MVC 또는 MVP 패턴 기반으로 입력, 상태, 렌더링 로직 분리 및 최적화
-- `BoardController`의 역할을 세분화하여 서브 컨트롤러 또는 헬퍼 클래스로 분리
-- `BlockDragHandler`의 이벤트 처리와 물리 로직을 적절히 분리
-- 기존 데이터 구조의 활용 또는 스테이지 확장성과 가독성을 고려한 자유로운 개선 가능
+EditorWindow 기반 커스텀 에디터 구현
 
----
+ScriptableObject 기반 StageData 생성 및 저장 기능 지원
 
-## 02. 🧩 Stage Editor 구현
+✨ 기능 목록
 
-### 💡 선택 구현 방식
+NxN 크기의 BoardBlock 자동 생성
 
-- Unity Custom Editor (Inspector 또는 EditorWindow)
-- Unity UI Toolkit (UXML 기반)
-- In-Game Build (Mac/Win에서 실행 가능한 형태)
+PlayingBlock(Shape, Gimmick 포함) 구성
 
-> (선택 사항) JSON 또는 ScriptableObject로의 데이터 변환/저장 기능 구현
+Wall 및 출구 위치 설정
 
-### 📌 요구 사항
+Editor Play 버튼 클릭 시 테스트 씬에서 Stage 미리보기 실행
 
-- 비개발자도 쉽게 사용할 수 있는 UI/UX 제공
-- 블록 배치 및 색상 설정 기능
-- Gimmick 정보 설정 (예: Star, Lock 등) 및 향후 기획 확장 고려
-- Wall 및 출구 설정 기능 포함
-- Editor Play 기능 포함
+Resources/StageData에 .asset으로 저장되며 실행 시 불러옴
 
----
+03. ✨ Visual Effect 최적화
 
-## 03. ✨ Visual Effect 최적화
+⚠️ 구현 실패 (기술적 제약으로 보류)
 
-### 🎯 요구 사항
+목표: 기존 Quad 기반 가림 처리 → Stencil Buffer 기반 Vertex 셰이더 방식 전환
 
-- 기존 `Quad`를 이용한 가림 처리 방식 → **Stencil Buffer 기반 셰이더**로 전환
-- 실제 오브젝트가 아닌 **버텍스 기반 스텐실**로 구현
+진행 내용:
 
-### ➕ 추가 고려 사항
+Stencil Mask Shader 작성 및 단일 Quad로 Replace 처리 완료
 
-- VContainer, Addressables 연동 고려
-- ScriptableObject(Event/Config) 기반 확장성 구조 적용
-- MonoBehaviour 의존도 최소화 및 Interface 기반 추상화 지향
-- 일관된 코딩 스타일 및 네이밍 유지
-- AI 도구(GPT, Claude 등) 사용 가능하나 **코드 및 설계의 일관성과 이해도 필수**
+보드 내부만 보여주기 위한 StencilVisible 셰이더 (Comp Equal / Pass Keep) 적용 시도 → 렌더 순서 문제 및 URP Feature 미연동 문제로 실패
 
----
+🛠️ 시도한 구조
 
-## ✅ 유의 사항
+RenderObject 2개 구성 (Mask용 Quad: Replace / 나머지: Keep 비교) → Mask 처리 의도대로 작동하지 않음
 
-- 평가 기준은 설계/구조화, 도구 완성도, 시각 효과 구현력, 코드 스타일을 종합적으로 고려합니다.
-- 문서화 및 주석 처리도 중요합니다. 협업을 염두에 둔 코드 작성이 필요합니다.
+Material에 Stencil 옵션 적용 시 정상 렌더링 불가 (머티리얼 미리보기, 객체 렌더링 문제)
 
----
+ShaderGraph, 커스텀 쉐이더 다수 시도 → URP Renderer Feature 설정 부재로 인한 적용 실패
 
-## 📬 제출
+🔧 Addressables 적용
 
-- 제출 기한: **2025년 5월 14일 (화) 13:00**
-- 제출 방법: 개인 GitHub 저장소(Fork) → Google Form 제출  
-  (반드시 **public repository**로 설정)
+기존 Resources.Load 방식 → Addressables 기반 비동기 로딩 전환
 
----
+적용 프리팹: Board Cell.prefab, Quad.prefab
+
+로딩 시 한 번만 불러온 후 Dictionary<string, GameObject>로 캐싱하여 재사용
+

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 195579090970020625}
   - component: {fileID: 2028742578461249541}
   - component: {fileID: 7914903596552320970}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TFLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4122665340609927559}
   - component: {fileID: 4022617413849543707}
   - component: {fileID: 5211935134027290726}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: CubeRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 2856886250000902059}
   - component: {fileID: 7804979385030747081}
   - component: {fileID: 7402227095178899472}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TBLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2241842516396312181}
   - component: {fileID: 2322278171000889673}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: BFRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3118470147614182693}
   - component: {fileID: 4025733680262783262}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: BBLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5202134121484578852}
   - component: {fileID: 188762627150623424}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: BFLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 3211573357127713025}
   - component: {fileID: 5611286939458968527}
   - component: {fileID: 8496361272085989626}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TBRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +697,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3244117131293840568}
   - component: {fileID: 1940589203623394831}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: BBRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 6641670977887895800}
   - component: {fileID: 7771100258322291648}
   - component: {fileID: 591063654208090365}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: TFRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

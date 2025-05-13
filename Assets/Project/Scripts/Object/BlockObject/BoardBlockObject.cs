@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
+using Game.Helpers.Block;
 
 public class BoardBlockObject : MonoBehaviour
 {
@@ -33,13 +34,13 @@ public class BoardBlockObject : MonoBehaviour
                 if (isHorizon[i])
                 {
                     if (block.dragHandler.horizon > len[i]) return false;
-                    if (!_ctrl.CheckCanDestroy(this, block)) return false;
+                    if (!BlockDestroyCheckHelper.CheckCanDestroy(this, block)) return false;
                     length = block.dragHandler.vertical;
                 }
                 else
                 {
                     if (block.dragHandler.vertical > len[i]) return false;
-                    if (!_ctrl.CheckCanDestroy(this, block)) return false;
+                    if (!BlockDestroyCheckHelper.CheckCanDestroy(this, block)) return false;
                     length = block.dragHandler.horizon;
                 }
 
@@ -106,7 +107,7 @@ public class BoardBlockObject : MonoBehaviour
                 foreach (var ps in pss)
                 {
                     ParticleSystemRenderer psrs = ps.GetComponent<ParticleSystemRenderer>();
-                    psrs.material = BoardController.Instance.GetTargetMaterial((int)block.colorType);
+                    psrs.material = BlockDestroyCheckHelper.GetTargetMaterial((int)block.colorType);
                 }
 
                 //TODO : Move to Other Class & Adjust Direction / Position
